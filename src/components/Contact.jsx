@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { api } from "../api";
+
+
 
 function Contact(){
     const navigate = useNavigate();
@@ -16,16 +19,29 @@ function Contact(){
         setForm(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Capture the info (here, store to localStorage for demo purposes)
-        const submissions = JSON.parse(localStorage.getItem("contactSubmissions") || "[]");
-        submissions.push({ ...form, submittedAt: new Date().toISOString() });
-        localStorage.setItem("contactSubmissions", JSON.stringify(submissions));
-        localStorage.setItem("contactMessage", "Thanks for your message! I’ll get back to you soon.");
-        // Redirect back to Home
-        navigate("/");
-    };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    // Send to backend Contact model: firstname, lastname, email
+    await api.createContact({
+      firstname: form.firstName,
+      lastname: form.lastName,
+      email: form.email,
+    });
+
+    // Optional: keep "thank you" message for Home page
+    localStorage.setItem(
+      "contactMessage",
+      "Thanks for your message! I’ll get back to you soon."
+    );
+
+    navigate("/");
+  } catch (err) {
+    alert("Failed to send message: " + err.message);
+  }
+};
+
 
     return (
         <div>
