@@ -17,9 +17,19 @@
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react-swc": "^3.7.0",
+    "cypress": "^15.7.0",
     "eslint": "^9.11.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.7",
     "vite": "^5.4.1"
-  }
+  },
+  "scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+  "cypress:open": "cypress open",
+  "cypress:run": "cypress run"
+}
+
+  
 }
