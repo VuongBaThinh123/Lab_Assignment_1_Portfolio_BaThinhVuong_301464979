@@ -7,6 +7,8 @@ import Services from "./components/Services";
 import Contact from "./components/Contact";
 import NotFound from "./components/NotFound";
 import Layout from "./components/Layout";
+import Signin from "./components/Signin";
+import Signup from "./components/Signup";
 
 // Admin components
 import UsersList from "./components/admin/UsersList";
@@ -32,6 +34,8 @@ function MainRouter() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
+  <Route path="/signin" element={<Signin />} />
+  <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
 
         {/* Protected admin routes */}
